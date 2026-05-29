@@ -80,6 +80,7 @@
     isNormalUser = true;
     description = "0xSA7";
     extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "adbusers" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -90,6 +91,7 @@
   services.printing.enable = true;
   virtualisation.docker.enable = true;
   
+  programs.zsh.enable = true;
   programs.firefox.enable = true;
   programs.wireshark.enable = true;
   programs.adb.enable = true;
