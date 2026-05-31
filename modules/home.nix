@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+     ./gnome.nix
+  ];
+
   home.username = "sa7";
   home.homeDirectory = "/home/sa7";
   
@@ -11,7 +16,7 @@
   # ==========================================
   home.packages = with pkgs; [
     # --- Desktop & GUI Apps ---
-    discord vlc vscode gnome-tweaks kitty copyq brave telegram-desktop steam-run    
+    discord vlc vscode gnome-tweaks kitty copyq brave telegram-desktop steam-run wl-clipboard   
 
     # --- Android & Mobile ---
     #android-studio scrcpy android-tools apktool jadx apksigner flutter
@@ -68,11 +73,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     
-   initContent = ''
-      zstyle ':completion:*' menu select 
+    initContent = ''
+    	zstyle ':completion:*' menu select 
       
-      bindkey "^[[1;5D" backward-word
-      bindkey "^[[1;5C" forward-word
+    	bindkey "^[[1;5D" backward-word
+    	bindkey "^[[1;5C" forward-word
     '';
 
     shellAliases = {
@@ -133,20 +138,6 @@
     ANDROID_SDK_ROOT = "/home/sa7/Android/Sdk";
   };
 
-  # ==========================================
-  # GNOME DESKTOP SETTINGS (DCONF)
-  # ==========================================
-  dconf.settings = {
-    # Override default terminal shortcut (Ctrl+Alt+T) to open Kitty
-    "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Control><Alt>t";
-      command = "kitty";
-      name = "Open Terminal (Kitty)";
-    };
-  };
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;

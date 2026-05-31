@@ -99,6 +99,19 @@
   programs.java.enable = true;
   programs.java.package = pkgs.jdk17;
 
+
+  # ==========================================
+  # GAMING & STEAM
+  # ==========================================
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; 
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+  
+  hardware.graphics.enable32Bit = true;
+
   # ==========================================
   # SYSTEM PACKAGES & FONTS
   # ==========================================
