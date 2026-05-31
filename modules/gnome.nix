@@ -47,6 +47,21 @@
       tap-to-click = true;
     };
 
+   # Power & Sleep Behavior
+    "org/gnome/desktop/session" = {
+      idle-delay = 300; 
+    };
+    "org/gnome/desktop/screensaver" = {
+      lock-enabled = true;
+      lock-delay = 0; 
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "suspend";
+      sleep-inactive-ac-timeout = 480; 
+      sleep-inactive-battery-type = "suspend";
+      sleep-inactive-battery-timeout = 480;
+    };
+
     # GNOME Extensions Enablement
     "org/gnome/shell" = {
       disable-user-extensions = false;
