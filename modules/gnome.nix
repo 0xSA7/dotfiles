@@ -5,7 +5,10 @@
   # GNOME PACKAGES & EXTENSIONS
   # ==========================================
   home.packages = with pkgs; [
+    inter
+    bibata-cursors
     gnome-tweaks
+    gnomeExtensions.vertical-workspaces
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
@@ -15,11 +18,11 @@
     gnomeExtensions.vitals
     gnomeExtensions.unblank
   ];
-
   # ==========================================
   # GNOME DESKTOP SETTINGS (DCONF)
   # ==========================================
   dconf.settings = {
+
     # Custom Keybindings (Kitty)
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
@@ -30,11 +33,11 @@
       name = "Open Terminal (Kitty)";
     };
 
-    # Desktop Interface (Dark Mode & Clock)
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      enable-hot-corners = false;
-      clock-show-weekday = true;
+    # Dash to Dock Specific Settings
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      dock-position = "BOTTOM";
+      dash-max-icon-size = 48;
+      transparency-mode = "DYNAMIC";
     };
 
     # Window Manager (Buttons)
@@ -42,9 +45,32 @@
       button-layout = "appmenu:minimize,maximize,close";
     };
 
+    # Fonts & Interface (Inter for UI, JetBrains Mono for Monospace)
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      clock-show-weekday = true;
+      font-name = "Inter 11";
+      document-font-name = "Inter 11";
+      monospace-font-name = "JetBrainsMono Nerd Font 11";
+    };
+
+    # Minimal Sounds (Disable UI pop/click sounds)
+    "org/gnome/desktop/sound" = {
+      # event-sounds = false;
+    };
+
     # Touchpad (Tap to click)
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
+    };
+
+    # Clipboard Indicator (Super+V Shortcut)
+    "org/gnome/shell/extensions/clipboard-indicator" = {
+      history-size = 50;
+      clear-on-boot = true;
+      move-item-first = true;
+      toggle-menu = [ "<Super>v" ]; 
     };
 
    # Power & Sleep Behavior
@@ -75,14 +101,9 @@
         "Vitals@CoreCoding.com"
         "unblank@sun.wxg@gmail.com"
         "in-picture@filiprund.cz"
+	"vertical-workspaces@G-dH.github.com"
       ];
     };
  
-    # Dash to Dock Specific Settings
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-position = "BOTTOM";
-      dash-max-icon-size = 48;
-      transparency-mode = "DYNAMIC";
-    };
   };
 }

@@ -10,7 +10,8 @@
   # HOSTNAME
   # ==========================================
   networking.hostName = "raad";
-
+# System-level configuration
+programs.dconf.enable = true;
   # ==========================================
   # BOOTLOADER (GRUB)
   # ==========================================

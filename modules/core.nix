@@ -94,7 +94,6 @@
   programs.zsh.enable = true;
   programs.firefox.enable = true;
   programs.wireshark.enable = true;
-  programs.adb.enable = true;
   programs.nix-ld.enable = true;
   programs.java.enable = true;
   programs.java.package = pkgs.jdk17;
@@ -116,9 +115,9 @@
   # SYSTEM PACKAGES & FONTS
   # ==========================================
   environment.systemPackages = with pkgs; [
-    git vim wget curl unzip zip gnupg file which tree htop
-    libva libva-utils vulkan-tools pciutils 
-    gcc gnumake cmake gdb pkg-config
+    git wget curl unzip zip gnupg file which tree htop
+    libva libva-utils vulkan-tools pciutils psmisc
+    gcc gnumake cmake gdb pkg-config android-tools
   ];
 
   fonts.packages = with pkgs; [
