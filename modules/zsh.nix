@@ -11,6 +11,7 @@
     
     initContent = ''
 	export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+        export LD_LIBRARY_PATH="/run/current-system/sw/share/nix-ld/lib:$LD_LIBRARY_PATH"
     	zstyle ':completion:*' menu select 
       
     	bindkey "^[[1;5D" backward-word

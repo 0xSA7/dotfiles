@@ -79,7 +79,7 @@
   users.users.sa7 = {
     isNormalUser = true;
     description = "0xSA7";
-    extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" "adbusers" "video"];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };

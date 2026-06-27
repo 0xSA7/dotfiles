@@ -20,7 +20,10 @@
   # ==========================================
   home.packages = with pkgs; [
     # --- Desktop & GUI Apps ---
-    discord vlc vscode gnome-tweaks kitty copyq brave telegram-desktop steam-run wl-clipboard adwaita-icon-theme shared-mime-info  
+    discord vlc vscode gnome-tweaks kitty copyq brave telegram-desktop steam-run
+    wl-clipboard adwaita-icon-theme shared-mime-info  pkgs.uv handbrake drawio
+
+    
 
     # --- Android & Mobile ---
     #android-studio scrcpy android-tools apktool jadx apksigner flutter
@@ -42,15 +45,15 @@
   # Git Configuration
   programs.git = {
     enable = true;
-    userName = "0xSA7";
-    includes = [
-      { path = "~/.gitconfig.local"; }
-    ];
-    extraConfig = {
+    settings = {
+      user.name = "0xSA7";
       init.defaultBranch = "main";
       core.editor = "nano";
       pull.rebase = true;
     };
+    includes = [
+      { path = "~/.gitconfig.local"; }
+    ];
   };
 
   # ==========================================
@@ -65,6 +68,8 @@
     ANDROID_SDK_ROOT = "/home/sa7/Android/Sdk";
   };
 
+  fonts.fontconfig.enable = true;
+
   # ==========================================
   # CURSOR THEME (Bibata Ice)
   # ==========================================
@@ -75,7 +80,7 @@
     gtk.enable = true;
     x11.enable = true;
   };
-
+  
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 }

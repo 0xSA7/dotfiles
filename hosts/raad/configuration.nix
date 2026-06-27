@@ -1,27 +1,29 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ 
     ./hardware-configuration.nix 
     ../../modules/core.nix 
+    ../../modules/virtualization.nix
   ];
 
   # ==========================================
   # HOSTNAME
   # ==========================================
   networking.hostName = "raad";
-# System-level configuration
-programs.dconf.enable = true;
+  programs.dconf.enable = true;
+
   # ==========================================
-  # BOOTLOADER (GRUB)
+  # BOOTLOADER (Lanzaboote / Secure Boot)
   # ==========================================
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub = {
+  boot.loader.grub.enable = lib.mkForce false;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
     enable = true;
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true;
+    pkiBundle = "/etc/secureboot";
   };
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot"; 
 
@@ -49,4 +51,14 @@ programs.dconf.enable = true;
     open = false;
     nvidiaSettings = true;
   };
+
+  # ==========================================
+  # System-wide dynamic linker
+  # ==========================================
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    glib
+  ];
 }
