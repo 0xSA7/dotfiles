@@ -42,5 +42,20 @@
         ];
       };
     };
+
+    homeConfigurations = {
+      "dev" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit unstablePkgs; };
+        modules = [
+          ./modules/ubuntu-dev-home.nix
+          {
+            home.username = "dev";
+            home.homeDirectory = "/home/dev";
+            home.stateVersion = "24.05"; 
+          }
+        ];
+      };
+    };
   };
 }
