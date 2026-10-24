@@ -49,6 +49,7 @@
         extraSpecialArgs = { inherit unstablePkgs; };
         modules = [
           ./modules/ubuntu-dev-home.nix
+#          ./modules/gnome.nix
           {
             home.username = "dev";
             home.homeDirectory = "/home/dev";

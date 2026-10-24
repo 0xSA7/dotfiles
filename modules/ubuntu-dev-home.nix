@@ -1,4 +1,4 @@
-{ config, pkgs, unstablePkgs, ... }:
+{ config, pkgs, unstablePkgs,lib, ... }:
 
 {
   
@@ -9,9 +9,12 @@
     ./zsh.nix
   ];
 
+# home.activation.linkGnomeExtensions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+#    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$HOME/.local/share/gnome-shell"
+#    $DRY_RUN_CMD ln -sfn $VERBOSE_ARG "$HOME/.nix-profile/share/gnome-shell/extensions" "$HOME/.local/share/gnome-shell/extensions"
+#  '';
  
   home.packages = with pkgs; [
-    kitty
     git
     fzf
     ripgrep

@@ -82,7 +82,7 @@ fi
 # 2. Kitty Terminal Sync
 # --------------------------------------------------------------
 if [ "$MODE" = "light" ]; then
-  kitty +kitten themes --dump-theme Kanagawa_light > /tmp/k_theme.conf
+  kitty +kitten themes --dump-theme Kanagawa_lotus > /tmp/k_theme.conf
 elif [ "$MODE" = "dark" ]; then
   kitty +kitten themes --dump-theme Kanagawa > /tmp/k_theme.conf
 fi

@@ -3,6 +3,7 @@
 {
   programs.kitty = {
     enable = true;
+    package = pkgs.runCommand "dummy-kitty" {} "mkdir $out"; 
     themeFile= "kanagawa";
     font = {
       name = "JetBrainsMono Nerd Font";
@@ -14,7 +15,7 @@
       confirm_os_window_close = 0;
       enable_audio_bell = false;
       allow_remote_control = "yes";
-      listen_on = "unix:@kitty-{kitty-pid}";
+      listen_on = "unix:\${XDG_RUNTIME_DIR}/kitty-{kitty-pid}";
     };
   };
 }

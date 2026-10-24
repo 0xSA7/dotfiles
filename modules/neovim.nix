@@ -10,8 +10,11 @@
     nerd-fonts.jetbrains-mono
     nodejs
   ];
-
-
+xdg.configFile = {
+    "nvim/cheatsheet.md".source = ./nvim/cheatsheet.md;
+    "nvim/lua/core_init.lua".source = ./nvim/init.lua;
+    "nvim/lua/core_snacks.lua".source = ./nvim/snacks.lua;
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -50,10 +53,9 @@
       supermaven-nvim          # maven
       cord-nvim                # cord 
     ];
-
-      initLua = ''
-      ${builtins.readFile ./nvim/init.lua}
-      ${builtins.readFile ./nvim/snacks.lua}
+    initLua = ''
+      require('core_init')
+      require('core_snacks')
     '';
   };
 }

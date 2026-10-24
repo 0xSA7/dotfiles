@@ -27,14 +27,14 @@ if snacks_status then
   ╚██████╔╝██╔╝ ██╗███████║██║  ██║   ██║                 
    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝                 
                                                        
-         Systems Security & Kernel Engineer                
+    low-level Systems Security & Software Engineer                
         ]],
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "g", desc = "Find Text", action = ":Telescope live_grep" },
-          { icon = " ", key = "c", desc = "Config", action = ":e ~/dotfiles/modules/nvim/init.lua" },
-          { icon = " ", key = "h", desc = "Cheat Sheet", action = ":e ~/dotfiles/modules/nvim/cheatsheet.md" },
+          { icon = " ", key = "c", desc = "Config", action = ":e " .. vim.fn.stdpath("config") .. "/lua/init.lua" },
+          { icon = " ", key = "h", desc = "Cheat Sheet", action = ":e " .. vim.fn.stdpath("config") .. "/cheatsheet.md" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
@@ -44,5 +44,6 @@ if snacks_status then
   -- Global mappings for Snacks utilities
   vim.keymap.set("n", "<leader>un", function() snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
   vim.keymap.set("n", "<leader>bd", function() snacks.bufdelete() end, { desc = "Delete Buffer" })
-  vim.keymap.set({ "n", "t" }, "<c-/>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
+  vim.keymap.set( {"n", "t"} , "<c-/>", function() snacks.terminal() end, { desc = "Toggle Terminal" })
+  vim.keymap.set({"n", "t"},"<c-_>", function() snacks.terminal() end, { desc = "Toggle Terminal (Fallback)" })
 end

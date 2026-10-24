@@ -14,16 +14,19 @@ vim.g.mapleader = " "
 -- ==========================================
 -- 2. THEME SYNC (GNOME)
 -- ==========================================
-local handle = io.popen("gsettings get org.gnome.desktop.interface color-scheme")
-local result = handle:read("*a")
-handle:close()
+local handle = io.popen("gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
+if handle then
+  local result = handle:read("*a")
+  handle:close()
 
 if result and result:match("prefer%-dark") then
   vim.cmd("colorscheme kanagawa-wave")
 else
   vim.cmd("colorscheme kanagawa-lotus")
 end
-
+else
+  vim.cmd("colorscheme kanagawa-wave")
+end
 -- ==========================================
 -- 3. AUTOCOMPLETION & SNIPPETS (CMP)
 -- ==========================================
@@ -262,19 +265,19 @@ if cord_status then
     },
   })
 --    to do: Cord.nvim commands
---  vim.api.nvim_create_user_command("CordConnect", function()
---    local ok, api = pcall(require, "cord.api")
---    if ok and api.connect then api.connect() end
---  end, {})
+  vim.api.nvim_create_user_command("CordConnect", function()
+    local ok, api = pcall(require, "cord.api")
+    if ok and api.connect then api.connect() end
+  end, {})
 
---  vim.api.nvim_create_user_command("CordDisconnect", function()
---    local ok, api = pcall(require, "cord.api")
---    if ok and api.disconnect then api.disconnect() end
---  end, {})
+  vim.api.nvim_create_user_command("CordDisconnect", function()
+    local ok, api = pcall(require, "cord.api")
+    if ok and api.disconnect then api.disconnect() end
+  end, {})
 
---  vim.keymap.set("n", "<leader>cr", "<cmd>CordConnect<CR>", { silent = true, desc = "Connect Discord" })
---  vim.keymap.set("n", "<leader>cd", "<cmd>CordDisconnect<CR>", { silent = true, desc = "Disconnect Discord" })
---  vim.keymap.set("n", "<leader>ct", "<cmd>CordTogglePresence<CR>", { silent = true, desc = "Toggle Discord Presence" })
+  vim.keymap.set("n", "<leader>cr", "<cmd>CordConnect<CR>", { silent = true, desc = "Connect Discord" })
+  vim.keymap.set("n", "<leader>cd", "<cmd>CordDisconnect<CR>", { silent = true, desc = "Disconnect Discord" })
+  vim.keymap.set("n", "<leader>ct", "<cmd>CordTogglePresence<CR>", { silent = true, desc = "Toggle Discord Presence" })
 else
   vim.notify("Cord.nvim failed to load: \n" .. tostring(cord), vim.log.levels.ERROR)
 end
